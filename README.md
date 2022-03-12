@@ -227,10 +227,10 @@ or this:
 ```js
 var server = await pqry.getServer("1a2b3c4d")
 
-server.power.start
-server.power.restart
-server.power.stop
-server.power.kill
+server.power.start()
+server.power.restart()
+server.power.stop()
+server.power.kill()
 ```
 #### SendCommand()
 ```js
