@@ -10,7 +10,7 @@ class ApiKey {
 		this.host = host;
 		this.apikey = apikey;
 	
-		this.delete = async function () {
+		async delete() {
 			return await DeleteApiKey(this.host, this.apikey, this.identifier)
 	    }
 	};
