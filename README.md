@@ -236,7 +236,7 @@ server.power.kill()
 ```js
 import { SendCommand } from "pqry";
 
-console.log(SendCommand Signal(<host>, <apikey>, <identifier>, <command>))
+console.log(SendCommand(<host>, <apikey>, <identifier>, <command>))
 ```
 Return:
 ```js
