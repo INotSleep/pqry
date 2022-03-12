@@ -144,6 +144,11 @@ You can also make it like this:
 ```js
 pqry.deleteApiKey(<description>, [allowed_ips])
 ```
+or this:
+```js
+var apikeys = await pqry.getApiKeys()
+apikeys[0].delete()
+```
 ## Example
 
 ```js
@@ -158,7 +163,7 @@ const pqry = new PQRY({
   var server = await pqry.getServer("1a2b3c4d");
   server.sendCommand("say §cRestart in 1 second!")
   setTimeout(() => {
-    server.power.stop
+    server.power.stop()
   }, 1000)
 })();
 ```
