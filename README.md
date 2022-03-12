@@ -25,8 +25,9 @@ const pqry = new PQRY({
 4. Use it :)
 
 ## Functions
-< > - required
-[ ] - optional
+* < > - required
+* [  ] - optional
+* `await` before all functions is required!
 #### GetServers()
 ```js
 import { GetServers } from "pqry";
