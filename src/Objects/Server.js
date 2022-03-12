@@ -33,11 +33,11 @@ class Server {
 			stop: () => Signal(this.host, this.apikey, this.identifier, "stop"),
 			kill: () => Signal(this.host, this.apikey, this.identifier, "kill")
 		};
-		this.sendCommand = async function (command) {
-			return await SendCommand(this.host, this.apikey, this.identifier, command);
+		async sendCommand(command) {
+			return SendCommand(this.host, this.apikey, this.identifier, command);
 		};
-		this.usage = async function() {
-			return await UsageInfo(this.host, this.apikey, this.identifier)
+		async usage() {
+			return UsageInfo(this.host, this.apikey, this.identifier)
 		}
 	};
 };
