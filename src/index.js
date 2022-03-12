@@ -7,7 +7,7 @@ import { Signal } from "./Commands/Signal.js";
 import { SendCommand } from "./Commands/SendCommand.js";
 import { UsageInfo } from "./Commands/UsageInfo.js"
 
-class PQRY {
+export default class PQRY {
 	constructor ({ host, apikey }) {
 		this.host = host;
 		this.apikey = apikey;
@@ -30,22 +30,21 @@ class PQRY {
 	}
 	
 	async getServer(id) {
-		
+		return GetServer(this.host. this.apikey, identifier);
 	}
-		this.getServer = async function (identifier) {
-			return GetServer(this.host, this.apikey, identifier)
-		};
-		this.signal = async function (identifier, signal) {
-			return Signal(this.host, this.apikey, identifier, signal)
-		}
-		this.sendCommand = async function (identifier, command) {
-			return SendCommand(this.host, this.apikey, identifier, command)
-		}
-		this.usageInfo = async function (identifier) {
-			return UsageInfo(this.host, this.apikey, identifier)
-		};
-	};
-};
+	
+	async signal(id, signal) {
+		return Signal(this.host, this.apikey, id, signal);
+	}
+	
+	async sendCommand(id, command) {
+		return SendCommand(this.host, this.apikey, id, command);
+	}
+	
+	async usageInfo(id) {
+		return UsageInfo(this.host, this.apikey, id);
+	}
+}
 
 export { 
 	PQRY,
