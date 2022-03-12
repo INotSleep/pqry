@@ -8,7 +8,7 @@ async function CreateApiKey(host, apikey, description, allowed_ips) {
 		"Content-Type": "application/json",
 		headers: {
 			Accept: "application/json",
-            Authorization: "Bearer RmhHAXDimIsZ52iL8AsKYTrgvCBceKghbIVRjEh2ED7fsRbc"
+            Authorization: "Bearer "+apikey
 		},
 		body: {
 			description: description,
