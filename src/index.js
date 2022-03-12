@@ -11,18 +11,27 @@ class PQRY {
 	constructor ({ host, apikey }) {
 		this.host = host;
 		this.apikey = apikey;
-		this.getServers = async function () {
-			return GetServers(this.host, this.apikey)
-		};
-		this.getApiKeys = async function () {
-			return GetApiKeys(this.host, this.apikey)
-		}
-		this.deleteApiKey = async function (identifier) {
-			return DeleteApiKey(this.host, this.apikey, identifier)
-		}
-		this.createApiKey = async function (description, allowed_ips) {
-			return CreateApiKey(this.host, this.apikey, description, allowed_ips)
-		}
+	}
+	
+	async getServers() {
+		return GetServers(this.host, this.apikey);
+	}
+	
+	async getApiKeys() {
+		return GetApiKeys(this.host, this.apikey);
+	}
+	
+	async deleteApiKey(id) {
+		return DeleteApiKey(this.host, this.apikey, id);
+	}
+	
+	async createApiKey(description, allowedIps) {
+		return CreateApiKey(this.host, this.apikey, description, allowedIps);
+	}
+	
+	async getServer(id) {
+		
+	}
 		this.getServer = async function (identifier) {
 			return GetServer(this.host, this.apikey, identifier)
 		};
