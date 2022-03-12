@@ -1,0 +1,24 @@
+{
+  "name": "pqry",
+  "version": "1.0.0",
+  "description": "Easier query to pterodactyl panel",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+	"pterodactyl",
+	"panel",
+	"request",
+	"minecraft",
+	"http",
+	"https",
+	"api"
+  ],
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
