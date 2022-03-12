@@ -9,10 +9,9 @@ class ApiKey {
 		this.created_at = created_at;
 		this.host = host;
 		this.apikey = apikey;
-	
-		async delete() {
-			return DeleteApiKey(this.host, this.apikey, this.identifier)
-	    }
+	};
+	async delete() {
+		return DeleteApiKey(this.host, this.apikey, this.identifier)
 	};
 };
 
