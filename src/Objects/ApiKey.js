@@ -11,7 +11,7 @@ class ApiKey {
 		this.apikey = apikey;
 	
 		async delete() {
-			return await DeleteApiKey(this.host, this.apikey, this.identifier)
+			return DeleteApiKey(this.host, this.apikey, this.identifier)
 	    }
 	};
 };
