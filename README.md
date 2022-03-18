@@ -2,7 +2,9 @@
 Easier query to pterodactyl v1 panel.
 ## Installing
 
-Coming soon...
+```sh
+npm install pqry
+```
 
 ## Usage
 
