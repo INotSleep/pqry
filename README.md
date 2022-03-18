@@ -1,5 +1,9 @@
 # pqry v1.0.1
 Easier query to pterodactyl v1 panel.
+## Targets
+* Add ts support.
+* Add CJS support.
+* Add filemanager query's
 ## Installing
 
 ```sh
