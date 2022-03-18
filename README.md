@@ -1,4 +1,4 @@
-# pqry v1.0.0
+# pqry v1.0.1
 Easier query to pterodactyl v1 panel.
 ## Installing
 
