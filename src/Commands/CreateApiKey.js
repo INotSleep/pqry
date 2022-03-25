@@ -16,13 +16,13 @@ async function CreateApiKey(host, apikey, description, allowed_ips) {
 		}
 	};
 	
-		return axios.post(host + "/api/client/account/api-keys", options.body, options).then(res => {
-			let statusCode = res.request.socket._httpMessage.res.statusCode
-			if (statusCode == 201) {
-				var apiKey = new ApiKey(res.body.attributes);
-				return apiKey
-			} else console.log(`Someting went wrong!${res.statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
-		}).catch(e => console.log(e));
+	return axios.post(host + "/api/client/account/api-keys", options.body, options).then(res => {
+		let statusCode = res.request.socket._httpMessage.res.statusCode
+		if (statusCode == 201) {
+			var apiKey = new ApiKey(res.body.attributes);
+			return apiKey
+		} else console.log(`Someting went wrong!${res.statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
+	}).catch(e => console.log(e));
 };
 
 export {
