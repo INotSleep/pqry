@@ -10,12 +10,12 @@ async function UsageInfo(host, apikey, identifier) {
 		}
 	};
 	
-		return axios(host + "/api/client/servers/"+identifier+ "/resources", options).then(res => {
-			let statusCode = res.request.socket._httpMessage.res.statusCode
-			if (statusCode == 200) {
-				return res.data.attributes;
-			} else return console.log(`Someting went wrong!${res.statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
-		}).catch(e => console.log(e));
+	return axios(host + "/api/client/servers/"+identifier+ "/resources", options).then(res => {
+		let statusCode = res.request.socket._httpMessage.res.statusCode
+		if (statusCode == 200) {
+			return res.data.attributes;
+		} else return console.log(`Someting went wrong!${res.statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
+	}).catch(e => console.log(e));
 };
 
 export {
