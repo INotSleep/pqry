@@ -7,7 +7,7 @@ async function SendCommand(host, apikey, identifier, command) {
 		headers: {
 			Accept: "application/json",
 			'Content-Type': 'application/json',
-            Authorization: "Bearer "+apikey
+    		        Authorization: "Bearer "+apikey
 		},
 		body: {
 			"command": command
