@@ -1,4 +1,4 @@
-# pqry v1.0.1
+# pqry v1.1.1
 Easier query to pterodactyl v1 panel.
 ## Targets
 * [X] Add TS support.
