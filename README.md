@@ -1,9 +1,9 @@
 # pqry v1.0.1
 Easier query to pterodactyl v1 panel.
 ## Targets
-* Add ts support.
-* Add CJS support.
-* Add filemanager query's
+* [X] Add TS support.
+* [X] Add CJS support.
+* [ ] Add filemanager query's
 ## Installing
 
 ```sh
@@ -16,7 +16,8 @@ npm install pqry
 2. Import PQRY:
 
 ```js
-import { PQRY } from "pqry";
+import { PQRY } from "pqry"; // ESM and TS
+const { PQRY } = require("pqry"); // CJS
 ```
 
 3. Specify your host (link to panel) and api:
@@ -36,7 +37,8 @@ const pqry = new PQRY({
 * `await` before all functions is required!
 #### GetServers()
 ```js
-import { GetServers } from "pqry";
+import { GetServers } from "pqry"; // ESM and TS
+const { GetServers } = require("pqry"); // CJS
 
 console.log(await GetServers(<host>, <apikey>))
 ```
@@ -93,7 +95,8 @@ pqry.getServers()
 ```
 #### GetApiKeys()
 ```js
-import { GetApiKeys } from "pqry";
+import { GetApiKeys } from "pqry"; // ESM and TS
+const { GetApiKeys } = require("pqry"); // CJS
 
 console.log(await GetApiKeys(<host>, <apikey>))
 ```
@@ -117,7 +120,8 @@ pqry.getApiKeys()
 ```
 #### CreateApiKey()
 ```js
-import { CreateApiKey } from "pqry";
+import { CreateApiKey } from "pqry"; // ESM and TS
+const { CreateApiKey } = require("pqry"); // CJS
 
 console.log(await CreateApiKey(<host>, <apikey>, <description>, [allowed_ips]))
 ```
@@ -139,7 +143,8 @@ pqry.createApiKey(<description>, [allowed_ips])
 ```
 #### DeleteApiKey()
 ```js
-import { DeleteApiKey } from "pqry";
+import { DeleteApiKey } from "pqry"; // ESM and TS
+const { DeleteApiKey } = require("pqry"); // CJS
 
 console.log(await DeleteApiKey(<host>, <apikey>, <identifier>))
 ```
@@ -158,7 +163,8 @@ apikeys[0].delete()
 ```
 #### GetServer()
 ```js
-import { GetServer } from "pqry";
+import { GetServer } from "pqry"; // ESM and TS
+const { GetServer } = require("pqry"); // CJS
 
 console.log(await GetServer(<host>, <apikey>, <identifier>))
 ```
@@ -213,6 +219,7 @@ pqry.getServer(<identifier>)
 #### Signal()
 ```js
 import { Signal } from "pqry";
+const { Signal } = require("pqry"); // CJS
 
 console.log(await Signal(<host>, <apikey>, <identifier>, <signal>))
 ```
@@ -240,7 +247,8 @@ server.power.kill()
 ```
 #### SendCommand()
 ```js
-import { SendCommand } from "pqry";
+import { SendCommand } from "pqry"; // ESM and TS
+const { SendCommand } = require("pqry"); // CJS
 
 console.log(SendCommand(<host>, <apikey>, <identifier>, <command>))
 ```
@@ -255,12 +263,12 @@ await pqry.sendCommand(<identifier>, <command>)
 or this:
 ```js
 var server = await pqry.getServer("1a2b3c4d")
-
 server.sendCommand(<command>)
 ```
 #### UsageInfo()
 ```js
-import { UsageInfo } from "pqry";
+import { UsageInfo } from "pqry"; // ESM and TS
+const { UsageInfo } = require("pqry"); // CJS
 
 console.log(await UsageInfo(<host>, <apikey>, <identifier>))
 ```
@@ -286,7 +294,6 @@ pqry.usageInfo(<identifier>)
 or this:
 ```js
 var server = await pqry.getServer("1a2b3c4d")
-
 server.usage()
 ```
 ## Example
