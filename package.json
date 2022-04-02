@@ -1,6 +1,6 @@
 {
   "name": "pqry",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "Easier query to pterodactyl panel",
   "main": "./cjs/src/index.cjs",
   "module": "./esm/src/index.js",
