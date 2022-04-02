@@ -4,6 +4,14 @@ Easier query to pterodactyl v1 panel.
 * [X] Add TS support.
 * [X] Add CJS support.
 * [ ] Add filemanager query's
+## Editing
+Souce code of package writed on ts. ESM and CJS is complied using `tsc` command.
+If you want to edit/fork package:
+1. Fork or clone using `git clone https://github.com/INotSleep/pqry.git`
+2. Edit code
+3. In `tsconfig.json` change `module` to modue what you want (eg. es2022, commonjs...)
+4. If you dont want complie to d.ts disable it in tsconfig (`declaration` and `sourceMap`)
+5. Complie using `tsc` 
 ## Installing
 
 ```sh
