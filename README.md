@@ -1,9 +1,5 @@
 # pqry v1.1.2
 Easier query to pterodactyl v1 panel.
-## Targets
-* [X] Add TS support.
-* [X] Add CJS support.
-* [ ] Add filemanager query's
 ## Editing
 Souce code of package writed on ts. ESM and CJS is complied using `tsc` command.
 If you want to edit/fork package:
@@ -156,10 +152,7 @@ const { DeleteApiKey } = require("pqry"); // CJS
 
 console.log(await DeleteApiKey(<host>, <apikey>, <identifier>))
 ```
-Return:
-```js
-undefined
-```
+Delete apikey.
 You can also make it like this:
 ```js
 pqry.deleteApiKey(<description>, [allowed_ips])
@@ -231,10 +224,7 @@ const { Signal } = require("pqry"); // CJS
 
 console.log(await Signal(<host>, <apikey>, <identifier>, <signal>))
 ```
-Return:
-```js
-undefined
-```
+Applyies state signal to server.
 Avlaible signals:
 * start
 * restart
@@ -260,10 +250,7 @@ const { SendCommand } = require("pqry"); // CJS
 
 console.log(SendCommand(<host>, <apikey>, <identifier>, <command>))
 ```
-Return:
-```js
-undefined
-```
+Send command to server.
 You can also make it like this:
 ```js
 await pqry.sendCommand(<identifier>, <command>)
@@ -303,6 +290,128 @@ or this:
 ```js
 var server = await pqry.getServer("1a2b3c4d")
 server.usage()
+```
+#### GetBackups()
+```
+import { GetBackups } from "pqry"; // ESM and TS
+const { GetBackups } = require("pqry"); // CJS
+
+console.log(await GetBackups(<host>, <apikey>, <identifier>))
+```
+`identifier` - server's identifier
+Return all backups of your server:
+```js
+[
+  {
+    uuid: '46cbc7fa-36a8-4eb3-b664-362a69729804',
+    is_successful: true,
+    is_locked: true,
+    name: 'My backup',
+    ignored_files: [],
+    checksum: 'sha1:115f6077497641a1bfdd881c1034226a13dc7c4f',
+    bytes: 342782907,
+    created_at: '2022-02-06T11:49:30+03:00',
+    completed_at: '2022-02-06T11:49:38+03:00',
+    host: 'https://link.to.panel.com',
+    apikey: 'your api key'
+  }
+]
+You can also make it like this:
+```js
+pqry.getBackups(<identifier>)
+```
+Note: All Backup request can be runned throught `Server` class:
+```js
+<Server>.getBackups()
+```
+#### GetBackup()
+```
+import { GetBackup } from "pqry"; // ESM and TS
+const { GetBackup } = require("pqry"); // CJS
+
+console.log(await GetBackup(<host>, <apikey>, <identifier>, <uuid>))
+```
+`identifier` - server's identifier
+`uuid` - uuid of backup
+Return backup of your server:
+```js
+{
+  uuid: '46cbc7fa-36a8-4eb3-b664-362a69729804',
+  is_successful: true,
+  is_locked: true,
+  name: 'My backup',
+  ignored_files: [],
+  checksum: 'sha1:115f6077497641a1bfdd881c1034226a13dc7c4f',
+  bytes: 342782907,
+  created_at: '2022-02-06T11:49:30+03:00',
+  completed_at: '2022-02-06T11:49:38+03:00',
+  host: 'https://link.to.panel.com',
+  apikey: 'your api key'
+}
+```
+You can also make it like this:
+```js
+pqry.getBackup(<identifier>, <uuid>)
+```
+#### CreateBackup()
+```
+import { CreateBackup } from "pqry"; // ESM and TS
+const { CreateBackup } = require("pqry"); // CJS
+
+console.log(await CreateBackup(<host>, <apikey>, <identifier>))
+```
+`identifier` - server's identifier
+`uuid` - uuid of backup
+Create and return backup of your server:
+```js
+{
+  uuid: '46cbc7fa-36a8-4eb3-b664-362a69729804',
+  is_successful: true,
+  is_locked: true,
+  name: 'My backup',
+  ignored_files: [],
+  checksum: 'sha1:115f6077497641a1bfdd881c1034226a13dc7c4f',
+  bytes: 342782907,
+  created_at: '2022-02-06T11:49:30+03:00',
+  completed_at: '2022-02-06T11:49:38+03:00',
+  host: 'https://link.to.panel.com',
+  apikey: 'your api key'
+}
+```
+You can also make it like this:
+```js
+pqry.createBackup(<identifier>)
+```
+#### DownloadBackup()
+```
+import { DownloadBackup } from "pqry"; // ESM and TS
+const { DownloadBackup } = require("pqry"); // CJS
+
+console.log(await DownloadBackup(<host>, <apikey>, <identifier>, <uuid>))
+```
+`identifier` - server's identifier
+`uuid` - uuid of backup
+Return backup's download link:
+```js
+https://mynode.com:8080/download/backup?token=123456
+```
+You can also make it like this:
+```js
+pqry.DownloadBackup(<identifier>, <uuid>)
+```
+#### DeleteBackup()
+```
+import { DeleteBackup } from "pqry"; // ESM and TS
+const { DeleteBackup } = require("pqry"); // CJS
+
+console.log(await DeleteBackup(<host>, <apikey>, <identifier>, <uuid>))
+```
+`identifier` - server's identifier
+`uuid` - uuid of backup
+Delete backup, if it not locked.
+You can also make it like this:
+```js
+pqry.DeleteBackup(<identifier>, <uuid>)
 ```
 ## Example
 
