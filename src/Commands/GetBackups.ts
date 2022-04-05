@@ -1,8 +1,8 @@
 import axios from "axios"
-import { ApiKey } from "./../Objects/ApiKey.js";
 import { AxiosResponse } from "axios";
+import { Backup } from "./../Objects/Backup.js";
 
-async function GetApiKeys(host: string, apikey: string) {
+async function GetBackups(host: string, apikey: string, identifier: string) {
 	apikey = apikey.replace(" ", "").replace("Bearer", "")
 	var options = {
 		headers: {
@@ -11,24 +11,25 @@ async function GetApiKeys(host: string, apikey: string) {
 		}
 	};
 	
-	return axios(`${host}/api/client/account/api-keys`, options)
+	return axios(`${host}/api/client/servers/${identifier}/backups`, options)
 	.then((res: AxiosResponse) => {
 		let statusCode = res.request.socket._httpMessage.res.statusCode
 		if (statusCode == 200) {
-			var rawApiKeys = res.data.data;
-			var apiKeys = [];
-			for (var rawApiKey of rawApiKeys) {
-				var apiKey = rawApiKey.attributes;
-				apiKey.host = host;
-				apiKey.apikey = apikey;
-				apiKeys.push(new ApiKey(apiKey));
+			var rawBackups = res.data.data;
+			var backups = [];
+			for (var rawBackup of rawBackups) {
+				var backup = res.data.attributes
+				backup.host = host;
+				backup.apikey = apikey;
+				backup.identifier = identifier;
+				backups.push(new Backup(backup));
 			};
-			return apiKeys
+			return backups
 		} else return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
 	})
 	.catch(e => console.log(e));
 };
 
 export {
-	GetApiKeys
+	GetBackups
 };

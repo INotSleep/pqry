@@ -1,6 +1,11 @@
 import { Signal } from "./../Commands/Signal.js";
 import { SendCommand } from "./../Commands/SendCommand.js"
 import { UsageInfo } from "./../Commands/UsageInfo.js";
+import { GetBackups } from "./../Commands/GetBackups.js";
+import { CreateBackup } from "./../Commands/CreateBackup.js";
+import { GetBackup } from "./../Commands/GetBackup.js";
+import { DownloadBackup } from "./../Commands/DownloadBackup.js";
+import { DeleteBackup } from "./../Commands/DeleteBackup.js";
 
 class Server {
 	server_owner: boolean;
@@ -112,12 +117,32 @@ class Server {
 	};
 	
 	async sendCommand(command: string) {
-		return await SendCommand(this.host, this.apikey, this.identifier, command);
+		return SendCommand(this.host, this.apikey, this.identifier, command);
 	};
 	
 	async usage() {
-		return await UsageInfo(this.host, this.apikey, this.identifier)
-	}
+		return UsageInfo(this.host, this.apikey, this.identifier);
+	};
+	
+	async getBackups() {
+		return GetBackups(this.host, this.apikey, this.identifier);
+	};
+	
+	async getBackup(uuid: string) {
+		return GetBackup(this.host, this.apikey, this.identifier, uuid);
+	};
+	
+	async createBackup() {
+		return CreateBackup(this.host, this.apikey, this.identifier);
+	};
+	
+	async downloadBackup(uuid: string) {
+		return DownloadBackup(this.host, this.apikey, this.identifier, uuid);
+	};
+	
+	async deleteBackup(uuid: string) {
+		return DeleteBackup(this.host, this.apikey, this.identifier, uuid);
+	};
 };
 
 export {

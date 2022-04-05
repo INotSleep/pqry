@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetApiKeys = void 0;
 const axios_1 = __importDefault(require("axios"));
-const ApiKey_js_1 = require("./../Objects/ApiKey.cjs");
+const ApiKey_js_1 = require("./../Objects/ApiKey.js");
 function GetApiKeys(host, apikey) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
@@ -31,10 +31,10 @@ function GetApiKeys(host, apikey) {
                 var rawApiKeys = res.data.data;
                 var apiKeys = [];
                 for (var rawApiKey of rawApiKeys) {
-                    var apiKey = new ApiKey_js_1.ApiKey(rawApiKey.attributes);
+                    var apiKey = rawApiKey.attributes;
                     apiKey.host = host;
                     apiKey.apikey = apikey;
-                    apiKeys.push(apiKey);
+                    apiKeys.push(new ApiKey_js_1.ApiKey(apiKey));
                 }
                 ;
                 return apiKeys;
@@ -47,3 +47,4 @@ function GetApiKeys(host, apikey) {
 }
 exports.GetApiKeys = GetApiKeys;
 ;
+//# sourceMappingURL=GetApiKeys.js.map

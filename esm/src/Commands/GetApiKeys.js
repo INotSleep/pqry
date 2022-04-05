@@ -25,10 +25,10 @@ function GetApiKeys(host, apikey) {
                 var rawApiKeys = res.data.data;
                 var apiKeys = [];
                 for (var rawApiKey of rawApiKeys) {
-                    var apiKey = new ApiKey(rawApiKey.attributes);
+                    var apiKey = rawApiKey.attributes;
                     apiKey.host = host;
                     apiKey.apikey = apikey;
-                    apiKeys.push(apiKey);
+                    apiKeys.push(new ApiKey(apiKey));
                 }
                 ;
                 return apiKeys;

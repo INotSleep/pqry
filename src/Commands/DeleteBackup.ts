@@ -1,8 +1,7 @@
 import axios from "axios"
-import { ApiKey } from "./../Objects/ApiKey.js";
 import { AxiosResponse } from "axios";
 
-async function GetApiKeys(host: string, apikey: string) {
+async function DeleteBackup(host: string, apikey: string, identifier: string, uuid: string) {
 	apikey = apikey.replace(" ", "").replace("Bearer", "")
 	var options = {
 		headers: {
@@ -11,24 +10,16 @@ async function GetApiKeys(host: string, apikey: string) {
 		}
 	};
 	
-	return axios(`${host}/api/client/account/api-keys`, options)
+	axios.delete(`${host}/api/client/servers/${identifier}/backups/${uuid}`, options)
 	.then((res: AxiosResponse) => {
 		let statusCode = res.request.socket._httpMessage.res.statusCode
-		if (statusCode == 200) {
-			var rawApiKeys = res.data.data;
-			var apiKeys = [];
-			for (var rawApiKey of rawApiKeys) {
-				var apiKey = rawApiKey.attributes;
-				apiKey.host = host;
-				apiKey.apikey = apikey;
-				apiKeys.push(new ApiKey(apiKey));
-			};
-			return apiKeys
+		if (statusCode == 204) {
+		return `Sucessful backup deleted with identifier: ${uuid}`
 		} else return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
 	})
 	.catch(e => console.log(e));
 };
 
 export {
-	GetApiKeys
+	DeleteBackup
 };

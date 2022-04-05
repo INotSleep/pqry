@@ -83,5 +83,10 @@ declare class Server {
     };
     sendCommand(command: string): Promise<string | void>;
     usage(): Promise<any>;
+    getBackups(): Promise<void | import("./Backup.js").Backup[]>;
+    getBackup(uuid: string): Promise<void | import("./Backup.js").Backup>;
+    createBackup(): Promise<void | import("./Backup.js").Backup>;
+    downloadBackup(uuid: string): Promise<any>;
+    deleteBackup(uuid: string): Promise<void>;
 }
 export { Server };

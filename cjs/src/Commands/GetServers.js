@@ -12,29 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateApiKey = void 0;
+exports.GetServers = void 0;
 const axios_1 = __importDefault(require("axios"));
-const ApiKey_js_1 = require("./../Objects/ApiKey.cjs");
-function CreateApiKey(host, apikey, description, allowed_ips) {
+const Server_js_1 = require("./../Objects/Server.js");
+function GetServers(host, apikey) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
-            "Content-Type": "application/json",
             headers: {
                 Accept: "application/json",
                 Authorization: `Bearer ${apikey}`
-            },
-            body: {
-                description: description,
-                allowed_ips: allowed_ips ? allowed_ips : []
             }
         };
-        return axios_1.default.post(`${host}/api/client/account/api-keys`, options.body, options)
+        return (0, axios_1.default)(`${host}/api/client`, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
-            if (statusCode == 201) {
-                var apiKey = new ApiKey_js_1.ApiKey(res.data.attributes);
-                return apiKey;
+            if (statusCode == 200) {
+                var servers = [];
+                var rawServers = res.data.data;
+                for (var rawServer of rawServers) {
+                    var allocations = [];
+                    var rawAllocations = rawServer.attributes.relationships.allocations.data;
+                    for (var rawAllocation of rawAllocations) {
+                        allocations.push(rawAllocation.attributes);
+                    }
+                    ;
+                    var server = rawServer.attributes;
+                    server.allocations = allocations;
+                    server.host = host;
+                    server.apikey = apikey;
+                    servers.push(new Server_js_1.Server(server));
+                }
+                return servers;
             }
             else
                 console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
@@ -42,5 +51,6 @@ function CreateApiKey(host, apikey, description, allowed_ips) {
             .catch(e => console.log(e));
     });
 }
-exports.CreateApiKey = CreateApiKey;
+exports.GetServers = GetServers;
 ;
+//# sourceMappingURL=GetServers.js.map

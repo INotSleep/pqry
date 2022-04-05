@@ -12,10 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetServers = void 0;
+exports.DeleteBackup = void 0;
 const axios_1 = __importDefault(require("axios"));
-const Server_js_1 = require("./../Objects/Server.cjs");
-function GetServers(host, apikey) {
+function DeleteBackup(host, apikey, identifier, uuid) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
@@ -24,32 +23,18 @@ function GetServers(host, apikey) {
                 Authorization: `Bearer ${apikey}`
             }
         };
-        return (0, axios_1.default)(`${host}/api/client`, options)
+        axios_1.default.delete(`${host}/api/client/servers/${identifier}/backups/${uuid}`, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
-            if (statusCode == 200) {
-                var servers = [];
-                var rawServers = res.data.data;
-                for (var rawServer of rawServers) {
-                    var allocations = [];
-                    var rawAllocations = rawServer.attributes.relationships.allocations.data;
-                    for (var rawAllocation of rawAllocations) {
-                        allocations.push(rawAllocation.attributes);
-                    }
-                    ;
-                    var server = new Server_js_1.Server(rawServer.attributes);
-                    server.allocations = allocations;
-                    server.host = host;
-                    server.apikey = apikey;
-                    servers.push(server);
-                }
-                return servers;
+            if (statusCode == 204) {
+                return `Sucessful backup deleted with identifier: ${uuid}`;
             }
             else
-                console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
+                return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
         })
             .catch(e => console.log(e));
     });
 }
-exports.GetServers = GetServers;
+exports.DeleteBackup = DeleteBackup;
 ;
+//# sourceMappingURL=DeleteBackup.js.map

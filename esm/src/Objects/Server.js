@@ -10,6 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { Signal } from "./../Commands/Signal.js";
 import { SendCommand } from "./../Commands/SendCommand.js";
 import { UsageInfo } from "./../Commands/UsageInfo.js";
+import { GetBackups } from "./../Commands/GetBackups.js";
+import { CreateBackup } from "./../Commands/CreateBackup.js";
+import { GetBackup } from "./../Commands/GetBackup.js";
+import { DownloadBackup } from "./../Commands/DownloadBackup.js";
+import { DeleteBackup } from "./../Commands/DeleteBackup.js";
 class Server {
     constructor(data) {
         this.power = {
@@ -44,15 +49,46 @@ class Server {
     ;
     sendCommand(command) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield SendCommand(this.host, this.apikey, this.identifier, command);
+            return SendCommand(this.host, this.apikey, this.identifier, command);
         });
     }
     ;
     usage() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield UsageInfo(this.host, this.apikey, this.identifier);
+            return UsageInfo(this.host, this.apikey, this.identifier);
         });
     }
+    ;
+    getBackups() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return GetBackups(this.host, this.apikey, this.identifier);
+        });
+    }
+    ;
+    getBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return GetBackup(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
+    createBackup() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return CreateBackup(this.host, this.apikey, this.identifier);
+        });
+    }
+    ;
+    downloadBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return DownloadBackup(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
+    deleteBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return DeleteBackup(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
 }
 ;
 export { Server };

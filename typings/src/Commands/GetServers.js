@@ -37,11 +37,11 @@ function GetServers(host, apikey) {
                         allocations.push(rawAllocation.attributes);
                     }
                     ;
-                    var server = new Server_js_1.Server(rawServer.attributes);
+                    var server = rawServer.attributes;
                     server.allocations = allocations;
                     server.host = host;
                     server.apikey = apikey;
-                    servers.push(server);
+                    servers.push(new Server_js_1.Server(server));
                 }
                 return servers;
             }

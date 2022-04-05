@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetServer = void 0;
-const axios_1 = __importDefault(require("axios"));
-const Server_js_1 = require("./../Objects/Server.cjs");
-function GetServer(host, apikey, identifier) {
+import axios from "axios";
+function DownloadBackup(host, apikey, identifier, uuid) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
@@ -24,21 +17,12 @@ function GetServer(host, apikey, identifier) {
                 Authorization: `Bearer ${apikey}`
             }
         };
-        return (0, axios_1.default)(`${host}/api/client/servers/${identifier}`, options)
+        return axios(`${host}/api/client/servers/${identifier}/backups/${uuid}/download`, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
             if (statusCode == 200) {
-                var server = new Server_js_1.Server(res.data.attributes);
-                var allocations = [];
-                var rawAllocations = res.data.attributes.relationships.allocations.data;
-                for (var rawAllocation of rawAllocations) {
-                    allocations.push(rawAllocation.attributes);
-                }
-                ;
-                server.allocations = allocations;
-                server.host = host;
-                server.apikey = apikey;
-                return server;
+                var link = res.data.attributes.url;
+                return link;
             }
             else
                 return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
@@ -46,5 +30,5 @@ function GetServer(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.GetServer = GetServer;
 ;
+export { DownloadBackup };

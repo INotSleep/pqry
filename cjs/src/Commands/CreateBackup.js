@@ -12,39 +12,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetApiKeys = void 0;
+exports.CreateBackup = void 0;
 const axios_1 = __importDefault(require("axios"));
-const ApiKey_js_1 = require("./../Objects/ApiKey.js");
-function GetApiKeys(host, apikey) {
+const Backup_js_1 = require("./../Objects/Backup.js");
+function CreateBackup(host, apikey, identifier) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
             headers: {
                 Accept: "application/json",
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${apikey}`
             }
         };
-        return (0, axios_1.default)(`${host}/api/client/account/api-keys`, options)
+        return axios_1.default.post(`${host}/api/client/servers/${identifier}/backups`, options, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
             if (statusCode == 200) {
-                var rawApiKeys = res.data.data;
-                var apiKeys = [];
-                for (var rawApiKey of rawApiKeys) {
-                    var apiKey = rawApiKey.attributes;
-                    apiKey.host = host;
-                    apiKey.apikey = apikey;
-                    apiKeys.push(new ApiKey_js_1.ApiKey(apiKey));
-                }
-                ;
-                return apiKeys;
+                var backup = res.data.attributes;
+                backup.host = host;
+                backup.apikey = apikey;
+                backup.identifier = identifier;
+                return new Backup_js_1.Backup(backup);
             }
-            else
-                return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
+            return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
         })
             .catch(e => console.log(e));
     });
 }
-exports.GetApiKeys = GetApiKeys;
+exports.CreateBackup = CreateBackup;
 ;
-//# sourceMappingURL=GetApiKeys.js.map
+//# sourceMappingURL=CreateBackup.js.map

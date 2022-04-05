@@ -6,6 +6,11 @@ import { GetServer } from "./Commands/GetServer.js";
 import { Signal } from "./Commands/Signal.js";
 import { SendCommand } from "./Commands/SendCommand.js";
 import { UsageInfo } from "./Commands/UsageInfo.js"
+import { GetBackups } from "./Commands/GetBackups.js";
+import { CreateBackup } from "./Commands/CreateBackup.js";
+import { GetBackup } from "./Commands/GetBackup.js";
+import { DownloadBackup } from "./Commands/DownloadBackup.js";
+import { DeleteBackup } from "./Commands/DeleteBackup.js";
 
 class PQRY {
 	host: any;
@@ -50,6 +55,26 @@ class PQRY {
 	async usageInfo(identifier: string) {
 		return UsageInfo(this.host, this.apikey, identifier)
 	};
+	
+	async getBackups(identifier: string) {
+		return GetBackups(this.host, this.apikey, identifier)
+	};
+	
+	async getBackup(identifier: string, uuid: string) {
+		return GetBackup(this.host, this.apikey, identifier, uuid)
+	};
+	
+	async createBackup(identifier: string) {
+		return CreateBackup(this.host, this.apikey, identifier)
+	};
+	
+	async downloadBackup(identifier: string, uuid: string) {
+		return DownloadBackup(this.host, this.apikey, identifier, uuid)
+	};
+	
+	async deleteBackup(identifier: string, uuid: string) {
+		return DeleteBackup(this.host, this.apikey, identifier, uuid)
+	};
 };
 
 export { 
@@ -61,5 +86,10 @@ export {
 	GetServer,
 	Signal,
 	SendCommand,
-	UsageInfo
+	UsageInfo,
+	CreateBackup,
+	GetBackup,
+	GetBackups,
+	DownloadBackup,
+	DeleteBackup
 };

@@ -31,11 +31,11 @@ function GetServers(host, apikey) {
                         allocations.push(rawAllocation.attributes);
                     }
                     ;
-                    var server = new Server(rawServer.attributes);
+                    var server = rawServer.attributes;
                     server.allocations = allocations;
                     server.host = host;
                     server.apikey = apikey;
-                    servers.push(server);
+                    servers.push(new Server(server));
                 }
                 return servers;
             }

@@ -6,6 +6,11 @@ import { GetServer } from "./Commands/GetServer.js";
 import { Signal } from "./Commands/Signal.js";
 import { SendCommand } from "./Commands/SendCommand.js";
 import { UsageInfo } from "./Commands/UsageInfo.js";
+import { GetBackups } from "./Commands/GetBackups.js";
+import { CreateBackup } from "./Commands/CreateBackup.js";
+import { GetBackup } from "./Commands/GetBackup.js";
+import { DownloadBackup } from "./Commands/DownloadBackup.js";
+import { DeleteBackup } from "./Commands/DeleteBackup.js";
 declare class PQRY {
     host: any;
     apikey: any;
@@ -21,5 +26,10 @@ declare class PQRY {
     signal(identifier: string, signal: string): Promise<string | void>;
     sendCommand(identifier: string, command: string): Promise<string | void>;
     usageInfo(identifier: string): Promise<any>;
+    getBackups(identifier: string): Promise<void | import("./Objects/Backup.js").Backup[]>;
+    getBackup(identifier: string, uuid: string): Promise<void | import("./Objects/Backup.js").Backup>;
+    createBackup(identifier: string): Promise<void | import("./Objects/Backup.js").Backup>;
+    downloadBackup(identifier: string, uuid: string): Promise<any>;
+    deleteBackup(identifier: string, uuid: string): Promise<void>;
 }
-export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo };
+export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup };

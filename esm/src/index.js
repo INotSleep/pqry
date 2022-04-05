@@ -15,6 +15,11 @@ import { GetServer } from "./Commands/GetServer.js";
 import { Signal } from "./Commands/Signal.js";
 import { SendCommand } from "./Commands/SendCommand.js";
 import { UsageInfo } from "./Commands/UsageInfo.js";
+import { GetBackups } from "./Commands/GetBackups.js";
+import { CreateBackup } from "./Commands/CreateBackup.js";
+import { GetBackup } from "./Commands/GetBackup.js";
+import { DownloadBackup } from "./Commands/DownloadBackup.js";
+import { DeleteBackup } from "./Commands/DeleteBackup.js";
 class PQRY {
     constructor(data) {
         this.host = data.host;
@@ -69,6 +74,36 @@ class PQRY {
         });
     }
     ;
+    getBackups(identifier) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return GetBackups(this.host, this.apikey, identifier);
+        });
+    }
+    ;
+    getBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return GetBackup(this.host, this.apikey, identifier, uuid);
+        });
+    }
+    ;
+    createBackup(identifier) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return CreateBackup(this.host, this.apikey, identifier);
+        });
+    }
+    ;
+    downloadBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return DownloadBackup(this.host, this.apikey, identifier, uuid);
+        });
+    }
+    ;
+    deleteBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return DeleteBackup(this.host, this.apikey, identifier, uuid);
+        });
+    }
+    ;
 }
 ;
-export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo };
+export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup };

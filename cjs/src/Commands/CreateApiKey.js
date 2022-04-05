@@ -12,39 +12,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetApiKeys = void 0;
+exports.CreateApiKey = void 0;
 const axios_1 = __importDefault(require("axios"));
 const ApiKey_js_1 = require("./../Objects/ApiKey.js");
-function GetApiKeys(host, apikey) {
+function CreateApiKey(host, apikey, description, allowed_ips) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
+            "Content-Type": "application/json",
             headers: {
                 Accept: "application/json",
                 Authorization: `Bearer ${apikey}`
+            },
+            body: {
+                description: description,
+                allowed_ips: allowed_ips ? allowed_ips : []
             }
         };
-        return (0, axios_1.default)(`${host}/api/client/account/api-keys`, options)
+        return axios_1.default.post(`${host}/api/client/account/api-keys`, options.body, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
-            if (statusCode == 200) {
-                var rawApiKeys = res.data.data;
-                var apiKeys = [];
-                for (var rawApiKey of rawApiKeys) {
-                    var apiKey = rawApiKey.attributes;
-                    apiKey.host = host;
-                    apiKey.apikey = apikey;
-                    apiKeys.push(new ApiKey_js_1.ApiKey(apiKey));
-                }
-                ;
-                return apiKeys;
+            if (statusCode == 201) {
+                var apiKey = new ApiKey_js_1.ApiKey(res.data.attributes);
+                return apiKey;
             }
             else
-                return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
+                console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
         })
             .catch(e => console.log(e));
     });
 }
-exports.GetApiKeys = GetApiKeys;
+exports.CreateApiKey = CreateApiKey;
 ;
-//# sourceMappingURL=GetApiKeys.js.map
+//# sourceMappingURL=CreateApiKey.js.map

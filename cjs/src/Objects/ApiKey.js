@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApiKey = void 0;
-const DeleteApiKey_js_1 = require("./../Commands/DeleteApiKey.cjs");
+const DeleteApiKey_js_1 = require("./../Commands/DeleteApiKey.js");
 class ApiKey {
     constructor(data) {
         this.identifier = data.identifier;
@@ -29,3 +29,4 @@ class ApiKey {
 }
 exports.ApiKey = ApiKey;
 ;
+//# sourceMappingURL=ApiKey.js.map

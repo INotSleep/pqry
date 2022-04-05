@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsageInfo = exports.SendCommand = exports.Signal = exports.GetServer = exports.CreateApiKey = exports.DeleteApiKey = exports.GetApiKeys = exports.GetServers = exports.PQRY = void 0;
+exports.DeleteBackup = exports.DownloadBackup = exports.GetBackups = exports.GetBackup = exports.CreateBackup = exports.UsageInfo = exports.SendCommand = exports.Signal = exports.GetServer = exports.CreateApiKey = exports.DeleteApiKey = exports.GetApiKeys = exports.GetServers = exports.PQRY = void 0;
 const GetServers_js_1 = require("./Commands/GetServers.js");
 Object.defineProperty(exports, "GetServers", { enumerable: true, get: function () { return GetServers_js_1.GetServers; } });
 const GetApiKeys_js_1 = require("./Commands/GetApiKeys.js");
@@ -26,6 +26,16 @@ const SendCommand_js_1 = require("./Commands/SendCommand.js");
 Object.defineProperty(exports, "SendCommand", { enumerable: true, get: function () { return SendCommand_js_1.SendCommand; } });
 const UsageInfo_js_1 = require("./Commands/UsageInfo.js");
 Object.defineProperty(exports, "UsageInfo", { enumerable: true, get: function () { return UsageInfo_js_1.UsageInfo; } });
+const GetBackups_js_1 = require("./Commands/GetBackups.js");
+Object.defineProperty(exports, "GetBackups", { enumerable: true, get: function () { return GetBackups_js_1.GetBackups; } });
+const CreateBackup_js_1 = require("./Commands/CreateBackup.js");
+Object.defineProperty(exports, "CreateBackup", { enumerable: true, get: function () { return CreateBackup_js_1.CreateBackup; } });
+const GetBackup_js_1 = require("./Commands/GetBackup.js");
+Object.defineProperty(exports, "GetBackup", { enumerable: true, get: function () { return GetBackup_js_1.GetBackup; } });
+const DownloadBackup_js_1 = require("./Commands/DownloadBackup.js");
+Object.defineProperty(exports, "DownloadBackup", { enumerable: true, get: function () { return DownloadBackup_js_1.DownloadBackup; } });
+const DeleteBackup_js_1 = require("./Commands/DeleteBackup.js");
+Object.defineProperty(exports, "DeleteBackup", { enumerable: true, get: function () { return DeleteBackup_js_1.DeleteBackup; } });
 class PQRY {
     constructor(data) {
         this.host = data.host;
@@ -77,6 +87,36 @@ class PQRY {
     usageInfo(identifier) {
         return __awaiter(this, void 0, void 0, function* () {
             return (0, UsageInfo_js_1.UsageInfo)(this.host, this.apikey, identifier);
+        });
+    }
+    ;
+    getBackups(identifier) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, GetBackups_js_1.GetBackups)(this.host, this.apikey, identifier);
+        });
+    }
+    ;
+    getBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, GetBackup_js_1.GetBackup)(this.host, this.apikey, identifier, uuid);
+        });
+    }
+    ;
+    createBackup(identifier) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, CreateBackup_js_1.CreateBackup)(this.host, this.apikey, identifier);
+        });
+    }
+    ;
+    downloadBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, DownloadBackup_js_1.DownloadBackup)(this.host, this.apikey, identifier, uuid);
+        });
+    }
+    ;
+    deleteBackup(identifier, uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, DeleteBackup_js_1.DeleteBackup)(this.host, this.apikey, identifier, uuid);
         });
     }
     ;

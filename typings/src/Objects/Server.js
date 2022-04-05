@@ -13,6 +13,11 @@ exports.Server = void 0;
 const Signal_js_1 = require("./../Commands/Signal.js");
 const SendCommand_js_1 = require("./../Commands/SendCommand.js");
 const UsageInfo_js_1 = require("./../Commands/UsageInfo.js");
+const GetBackups_js_1 = require("./../Commands/GetBackups.js");
+const CreateBackup_js_1 = require("./../Commands/CreateBackup.js");
+const GetBackup_js_1 = require("./../Commands/GetBackup.js");
+const DownloadBackup_js_1 = require("./../Commands/DownloadBackup.js");
+const DeleteBackup_js_1 = require("./../Commands/DeleteBackup.js");
 class Server {
     constructor(data) {
         this.power = {
@@ -47,15 +52,46 @@ class Server {
     ;
     sendCommand(command) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (0, SendCommand_js_1.SendCommand)(this.host, this.apikey, this.identifier, command);
+            return (0, SendCommand_js_1.SendCommand)(this.host, this.apikey, this.identifier, command);
         });
     }
     ;
     usage() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield (0, UsageInfo_js_1.UsageInfo)(this.host, this.apikey, this.identifier);
+            return (0, UsageInfo_js_1.UsageInfo)(this.host, this.apikey, this.identifier);
         });
     }
+    ;
+    getBackups() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, GetBackups_js_1.GetBackups)(this.host, this.apikey, this.identifier);
+        });
+    }
+    ;
+    getBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, GetBackup_js_1.GetBackup)(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
+    createBackup() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, CreateBackup_js_1.CreateBackup)(this.host, this.apikey, this.identifier);
+        });
+    }
+    ;
+    downloadBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, DownloadBackup_js_1.DownloadBackup)(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
+    deleteBackup(uuid) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return (0, DeleteBackup_js_1.DeleteBackup)(this.host, this.apikey, this.identifier, uuid);
+        });
+    }
+    ;
 }
 exports.Server = Server;
 ;

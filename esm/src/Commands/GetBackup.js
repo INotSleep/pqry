@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import axios from "axios";
-import { Server } from "./../Objects/Server.js";
-function GetServer(host, apikey, identifier) {
+import { Backup } from "./../Objects/Backup.js";
+function GetBackup(host, apikey, identifier, uuid) {
     return __awaiter(this, void 0, void 0, function* () {
         apikey = apikey.replace(" ", "").replace("Bearer", "");
         var options = {
@@ -18,21 +18,15 @@ function GetServer(host, apikey, identifier) {
                 Authorization: `Bearer ${apikey}`
             }
         };
-        return axios(`${host}/api/client/servers/${identifier}`, options)
+        return axios(`${host}/api/client/servers/${identifier}/backups/${uuid}`, options)
             .then((res) => {
             let statusCode = res.request.socket._httpMessage.res.statusCode;
             if (statusCode == 200) {
-                var server = new Server(res.data.attributes);
-                var allocations = [];
-                var rawAllocations = res.data.attributes.relationships.allocations.data;
-                for (var rawAllocation of rawAllocations) {
-                    allocations.push(rawAllocation.attributes);
-                }
-                ;
-                server.allocations = allocations;
-                server.host = host;
-                server.apikey = apikey;
-                return server;
+                var backup = res.data.attributes;
+                backup.host = host;
+                backup.apikey = apikey;
+                backup.identifier = identifier;
+                return new Backup(backup);
             }
             else
                 return console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
@@ -41,4 +35,4 @@ function GetServer(host, apikey, identifier) {
     });
 }
 ;
-export { GetServer };
+export { GetBackup };
