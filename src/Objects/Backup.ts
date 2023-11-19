@@ -1,7 +1,7 @@
 import { DownloadBackup } from "./../Commands/DownloadBackup.js";
 import { DeleteBackup } from "./../Commands/DeleteBackup.js";
 
-class Backup {
+export class Backup {
 	uuid: string;
 	is_successful: boolean;
 	is_locked: boolean;
@@ -46,8 +46,4 @@ class Backup {
 	async delete() {
 		return await DeleteBackup(this.host, this.apikey, this.identifier, this.uuid)
 	}
-};
-
-export {
-	Backup
 };

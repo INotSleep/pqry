@@ -11,7 +11,11 @@ import { CreateBackup } from "./Commands/CreateBackup.js";
 import { GetBackup } from "./Commands/GetBackup.js";
 import { DownloadBackup } from "./Commands/DownloadBackup.js";
 import { DeleteBackup } from "./Commands/DeleteBackup.js";
-
+import { GetWebSocketCredentials } from "./Commands/GetWebSocketCredentials.js";
+import { ServerWebSocket } from "./Objects/ServerWebSocket.js";
+import { Server } from "./Objects/Server.js";
+import { Backup } from "./Objects/Backup.js";
+import { ApiKey } from "./Objects/ApiKey.js";
 class PQRY {
 	host: any;
     apikey: any;
@@ -75,6 +79,10 @@ class PQRY {
 	async deleteBackup(identifier: string, uuid: string) {
 		return DeleteBackup(this.host, this.apikey, identifier, uuid)
 	};
+
+	async getWebSocketCredentials(identifier: string) {
+		return GetWebSocketCredentials(this.host, this.apikey, identifier)
+	};
 };
 
 export { 
@@ -91,5 +99,10 @@ export {
 	GetBackup,
 	GetBackups,
 	DownloadBackup,
-	DeleteBackup
+	DeleteBackup,
+	GetWebSocketCredentials,
+	ServerWebSocket,
+	Server,
+	Backup,
+	ApiKey
 };

@@ -1,13 +1,11 @@
-# pqry v1.2.1
+# pqry v1.2.2
 Easier query to pterodactyl v1 panel.
 ## Editing
 Souce code of package writed on ts. ESM and CJS is complied using `tsc` command.
 If you want to edit/fork package:
 1. Fork or clone using `git clone https://github.com/INotSleep/pqry.git`
 2. Edit code
-3. In `tsconfig.json` change `module` to modue what you want (eg. es2022, commonjs...)
-4. If you dont want complie to d.ts disable it in tsconfig (`declaration` and `sourceMap`)
-5. Complie using `tsc` 
+3. Complie using `compile` 
 ## Installing
 
 ```sh
@@ -38,7 +36,7 @@ const pqry = new PQRY({
 ## Functions
 * < > - required
 * [  ] - optional
-* `await` before all functions is required!
+* All functions return `Promise<?>`
 #### GetServers()
 ```js
 import { GetServers } from "pqry"; // ESM and TS
@@ -152,7 +150,7 @@ const { DeleteApiKey } = require("pqry"); // CJS
 
 console.log(await DeleteApiKey(<host>, <apikey>, <identifier>))
 ```
-Delete apikey.
+Delete apikey.  
 You can also make it like this:
 ```js
 pqry.deleteApiKey(<description>, [allowed_ips])
@@ -298,7 +296,7 @@ const { GetBackups } = require("pqry"); // CJS
 
 console.log(await GetBackups(<host>, <apikey>, <identifier>))
 ```
-`identifier` - server's identifier
+`identifier` - server's identifier  
 Return all backups of your server:
 ```js
 [
@@ -331,8 +329,8 @@ const { GetBackup } = require("pqry"); // CJS
 
 console.log(await GetBackup(<host>, <apikey>, <identifier>, <uuid>))
 ```
-`identifier` - server's identifier
-`uuid` - uuid of backup
+`identifier` - server's identifier  
+`uuid` - uuid of backup  
 Return backup of your server:
 ```js
 {
@@ -360,8 +358,8 @@ const { CreateBackup } = require("pqry"); // CJS
 
 console.log(await CreateBackup(<host>, <apikey>, <identifier>))
 ```
-`identifier` - server's identifier
-`uuid` - uuid of backup
+`identifier` - server's identifier  
+`uuid` - uuid of backup  
 Create and return backup of your server:
 ```js
 {
@@ -389,8 +387,8 @@ const { DownloadBackup } = require("pqry"); // CJS
 
 console.log(await DownloadBackup(<host>, <apikey>, <identifier>, <uuid>))
 ```
-`identifier` - server's identifier
-`uuid` - uuid of backup
+`identifier` - server's identifier  
+`uuid` - uuid of backup  
 Return backup's download link:
 ```js
 https://mynode.com:8080/download/backup?token=123456
@@ -400,18 +398,89 @@ You can also make it like this:
 pqry.DownloadBackup(<identifier>, <uuid>)
 ```
 #### DeleteBackup()
-```
+```js
 import { DeleteBackup } from "pqry"; // ESM and TS
 const { DeleteBackup } = require("pqry"); // CJS
 
 console.log(await DeleteBackup(<host>, <apikey>, <identifier>, <uuid>))
 ```
-`identifier` - server's identifier
-`uuid` - uuid of backup
-Delete backup, if it not locked.
+`identifier` - server's identifier  
+`uuid` - uuid of backup  
+Delete backup, if it not locked.  
 You can also make it like this:
 ```js
-pqry.DeleteBackup(<identifier>, <uuid>)
+pqry.deleteBackup(<identifier>, <uuid>)
+```
+#### GetWebSocketCredintials
+```js
+import { GetWebSocketCredintials } from "pqry"; // ESM and TS
+const { GetWebSocketCredintials } = require("pqry"); // CJS
+
+console.log(await GetWebSocketCredintials(<host>, <apikey>, <identifier>))
+```
+`identifier` - server's identifier.  
+Delete backup, if it not locked.  
+You can also make it like this:
+```js
+pqry.getWebSocketCredintials(<identifier>)
+```
+Or
+```js
+const server = await pqry.getServer("1a2b3c4d");
+console.log(server.getWebSocketCredintials())
+```
+Returns:
+```js
+{
+  "token": "eyJ0eXAiOiJ...",
+  "socket": "wss:\/\/pterodactyl.file.properties:8080\/api\/servers\/1a2b3c4d-259b-452e-8b4e-cecc464142ca\/ws"
+}
+```
+That function is useless, because there's implementation WebSocket:
+```js
+import { ServerWebSocket } from "pqry";
+
+let server = await pqry.getServer("1a2b3c4d")
+let socket = new ServerWebSocket(server, <autoExtend>);
+socket.on("log", (message) => {})
+socket.on("close", (code, message) => {})
+socket.on("error", (err) => {})
+socket.on("socket_open", () => {})
+socket.on("rawmessage", () => {})
+socket.on("stats", (data) => {
+  /*
+  {
+    "memory_bytes": 526626816,
+    "memory_limit_bytes": 588800000,
+    "cpu_absolute": 588.815,
+    "network": {
+        "rx_bytes": 1126,
+        "tx_bytes": 1126
+    },
+    "state": "stopping",
+    "disk_bytes": 128118626
+}
+  */
+})
+socket.on("token_expiring", () => {})
+socket.on("token_expired", () => {})
+socket.on("open", () => {})
+socket.auth()
+
+socket.requestStats()
+socket.requestLogs()
+socket.sendSignal("start") // kill stop restart start
+socket.sendCommand("say Hello from pqry by WebSocket")
+
+socket.socket.close() // to close WebSocket
+
+```
+`autoExtend` - Extend WebSocket connection on tocken expiring.  
+Usefull only to use `log`, `stats`, and `open` listeners.  
+Also you can create `ServerWebSocket` instance from `Server`:
+```js
+let server = await pqry.getServer("1a2b3c4d")
+let socket = server.getWebSocket(true)
 ```
 ## Example
 

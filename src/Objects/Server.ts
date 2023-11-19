@@ -6,8 +6,10 @@ import { CreateBackup } from "./../Commands/CreateBackup.js";
 import { GetBackup } from "./../Commands/GetBackup.js";
 import { DownloadBackup } from "./../Commands/DownloadBackup.js";
 import { DeleteBackup } from "./../Commands/DeleteBackup.js";
+import { GetWebSocketCredentials } from "./../Commands/GetWebSocketCredentials.js";
+import { ServerWebSocket } from "./ServerWebSocket.js";
 
-class Server {
+export class Server {
 	server_owner: boolean;
 	identifier: string;
 	internal_id: string;
@@ -143,8 +145,12 @@ class Server {
 	async deleteBackup(uuid: string) {
 		return DeleteBackup(this.host, this.apikey, this.identifier, uuid);
 	};
-};
 
-export {
-	Server
+	async getWebSocketCredentials() {
+		return GetWebSocketCredentials(this.host, this.apikey, this.identifier)
+	}
+
+	getWebSocket(autoExtend: boolean) {
+		return new ServerWebSocket(this, autoExtend);
+	}
 };

@@ -2,7 +2,7 @@ import axios from "axios"
 import { Server } from "./../Objects/Server.js";
 import { AxiosResponse } from "axios";
 
-async function GetServers(host: string, apikey: string) {
+export async function GetServers(host: string, apikey: string) {
 	apikey = apikey.replace(" ", "").replace("Bearer", "")
 	var options = {
 		headers: {
@@ -13,12 +13,12 @@ async function GetServers(host: string, apikey: string) {
 	
 	return axios(`${host}/api/client`, options)
 	.then((res: AxiosResponse) => {
-		let statusCode = res.request.socket._httpMessage.res.statusCode;
+		let statusCode = res.request.res.statusCode;
 		if (statusCode == 200) {
-			var servers = [];
+			var servers: Server[] = [];
 			var rawServers = res.data.data;
 			for(var rawServer of rawServers) {
-				var allocations = [];
+				var allocations: any = [];
 				var rawAllocations = rawServer.attributes.relationships.allocations.data;
 				for(var rawAllocation of rawAllocations) {
 					allocations.push(rawAllocation.attributes)
@@ -33,8 +33,4 @@ async function GetServers(host: string, apikey: string) {
 		} else console.log(`Someting went wrong!${statusCode ? `\nStatus Code: ${statusCode}` : ""}`);
 	})
 	.catch(e => console.log(e));
-};
-
-export {
-	GetServers
 };

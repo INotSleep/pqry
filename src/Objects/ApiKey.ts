@@ -1,6 +1,6 @@
 import { DeleteApiKey } from "./../Commands/DeleteApiKey.js";
 
-class ApiKey {
+export class ApiKey {
 	identifier: string
 	description: string
 	allowed_ips: string[]
@@ -30,8 +30,4 @@ class ApiKey {
 	async delete() {
 		return await DeleteApiKey(this.host, this.apikey, this.identifier)
 	}
-};
-
-export {
-	ApiKey
 };
