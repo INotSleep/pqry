@@ -1,4 +1,4 @@
-# pqry v1.2.2
+# pqry v1.2.3
 Easier query to pterodactyl v1 panel.
 ## Editing
 Souce code of package writed on ts. ESM and CJS is complied using `tsc` command.
