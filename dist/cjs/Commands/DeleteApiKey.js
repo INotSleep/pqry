@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeleteApiKey = void 0;
+exports.DeleteApiKey = DeleteApiKey;
 const axios_1 = __importDefault(require("axios"));
 function DeleteApiKey(host, apikey, identifier) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -35,6 +35,5 @@ function DeleteApiKey(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.DeleteApiKey = DeleteApiKey;
 ;
 //# sourceMappingURL=DeleteApiKey.js.map

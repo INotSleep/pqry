@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateBackup = void 0;
+exports.CreateBackup = CreateBackup;
 const axios_1 = __importDefault(require("axios"));
 const Backup_js_1 = require("./../Objects/Backup.js");
 function CreateBackup(host, apikey, identifier) {
@@ -40,6 +40,5 @@ function CreateBackup(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.CreateBackup = CreateBackup;
 ;
 //# sourceMappingURL=CreateBackup.js.map

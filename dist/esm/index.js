@@ -21,6 +21,10 @@ import { GetBackup } from "./Commands/GetBackup.js";
 import { DownloadBackup } from "./Commands/DownloadBackup.js";
 import { DeleteBackup } from "./Commands/DeleteBackup.js";
 import { GetWebSocketCredentials } from "./Commands/GetWebSocketCredentials.js";
+import { ServerWebSocket } from "./Objects/ServerWebSocket.js";
+import { Server } from "./Objects/Server.js";
+import { Backup } from "./Objects/Backup.js";
+import { ApiKey } from "./Objects/ApiKey.js";
 class PQRY {
     constructor(data) {
         this.host = data.host;
@@ -113,5 +117,5 @@ class PQRY {
     ;
 }
 ;
-export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup, GetWebSocketCredentials };
+export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup, GetWebSocketCredentials, ServerWebSocket, Server, Backup, ApiKey };
 //# sourceMappingURL=index.js.map

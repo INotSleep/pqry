@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetWebSocketCredentials = void 0;
+exports.GetWebSocketCredentials = GetWebSocketCredentials;
 const axios_1 = __importDefault(require("axios"));
 function GetWebSocketCredentials(host, apikey, identifier) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -35,6 +35,5 @@ function GetWebSocketCredentials(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.GetWebSocketCredentials = GetWebSocketCredentials;
 ;
 //# sourceMappingURL=GetWebSocketCredentials.js.map

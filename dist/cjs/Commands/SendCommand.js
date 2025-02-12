@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SendCommand = void 0;
+exports.SendCommand = SendCommand;
 const axios_1 = __importDefault(require("axios"));
 function SendCommand(host, apikey, identifier, command) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39,6 +39,5 @@ function SendCommand(host, apikey, identifier, command) {
             .catch(e => console.log(e));
     });
 }
-exports.SendCommand = SendCommand;
 ;
 //# sourceMappingURL=SendCommand.js.map

@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Server } from "./Server.js";
 import WS from "ws";
 import { EventEmitter } from "node:events";

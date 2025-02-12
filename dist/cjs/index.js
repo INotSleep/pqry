@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetWebSocketCredentials = exports.DeleteBackup = exports.DownloadBackup = exports.GetBackups = exports.GetBackup = exports.CreateBackup = exports.UsageInfo = exports.SendCommand = exports.Signal = exports.GetServer = exports.CreateApiKey = exports.DeleteApiKey = exports.GetApiKeys = exports.GetServers = exports.PQRY = void 0;
+exports.ApiKey = exports.Backup = exports.Server = exports.ServerWebSocket = exports.GetWebSocketCredentials = exports.DeleteBackup = exports.DownloadBackup = exports.GetBackups = exports.GetBackup = exports.CreateBackup = exports.UsageInfo = exports.SendCommand = exports.Signal = exports.GetServer = exports.CreateApiKey = exports.DeleteApiKey = exports.GetApiKeys = exports.GetServers = exports.PQRY = void 0;
 const GetServers_js_1 = require("./Commands/GetServers.js");
 Object.defineProperty(exports, "GetServers", { enumerable: true, get: function () { return GetServers_js_1.GetServers; } });
 const GetApiKeys_js_1 = require("./Commands/GetApiKeys.js");
@@ -38,6 +38,14 @@ const DeleteBackup_js_1 = require("./Commands/DeleteBackup.js");
 Object.defineProperty(exports, "DeleteBackup", { enumerable: true, get: function () { return DeleteBackup_js_1.DeleteBackup; } });
 const GetWebSocketCredentials_js_1 = require("./Commands/GetWebSocketCredentials.js");
 Object.defineProperty(exports, "GetWebSocketCredentials", { enumerable: true, get: function () { return GetWebSocketCredentials_js_1.GetWebSocketCredentials; } });
+const ServerWebSocket_js_1 = require("./Objects/ServerWebSocket.js");
+Object.defineProperty(exports, "ServerWebSocket", { enumerable: true, get: function () { return ServerWebSocket_js_1.ServerWebSocket; } });
+const Server_js_1 = require("./Objects/Server.js");
+Object.defineProperty(exports, "Server", { enumerable: true, get: function () { return Server_js_1.Server; } });
+const Backup_js_1 = require("./Objects/Backup.js");
+Object.defineProperty(exports, "Backup", { enumerable: true, get: function () { return Backup_js_1.Backup; } });
+const ApiKey_js_1 = require("./Objects/ApiKey.js");
+Object.defineProperty(exports, "ApiKey", { enumerable: true, get: function () { return ApiKey_js_1.ApiKey; } });
 class PQRY {
     constructor(data) {
         this.host = data.host;

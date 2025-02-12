@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetApiKeys = void 0;
+exports.GetApiKeys = GetApiKeys;
 const axios_1 = __importDefault(require("axios"));
 const ApiKey_js_1 = require("./../Objects/ApiKey.js");
 function GetApiKeys(host, apikey) {
@@ -45,6 +45,5 @@ function GetApiKeys(host, apikey) {
             .catch(e => console.log(e));
     });
 }
-exports.GetApiKeys = GetApiKeys;
 ;
 //# sourceMappingURL=GetApiKeys.js.map

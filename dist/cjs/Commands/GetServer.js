@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetServer = void 0;
+exports.GetServer = GetServer;
 const axios_1 = __importDefault(require("axios"));
 const Server_js_1 = require("./../Objects/Server.js");
 function GetServer(host, apikey, identifier) {
@@ -46,6 +46,5 @@ function GetServer(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.GetServer = GetServer;
 ;
 //# sourceMappingURL=GetServer.js.map

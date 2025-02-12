@@ -12,6 +12,10 @@ import { GetBackup } from "./Commands/GetBackup.js";
 import { DownloadBackup } from "./Commands/DownloadBackup.js";
 import { DeleteBackup } from "./Commands/DeleteBackup.js";
 import { GetWebSocketCredentials } from "./Commands/GetWebSocketCredentials.js";
+import { ServerWebSocket } from "./Objects/ServerWebSocket.js";
+import { Server } from "./Objects/Server.js";
+import { Backup } from "./Objects/Backup.js";
+import { ApiKey } from "./Objects/ApiKey.js";
 declare class PQRY {
     host: any;
     apikey: any;
@@ -19,19 +23,19 @@ declare class PQRY {
         host: any;
         apikey: any;
     });
-    getServers(): Promise<void | import("./Objects/Server.js").Server[] | undefined>;
-    getApiKeys(): Promise<void | import("./Objects/ApiKey.js").ApiKey[]>;
+    getServers(): Promise<void | Server[] | undefined>;
+    getApiKeys(): Promise<void | ApiKey[]>;
     deleteApiKey(identifier: string): Promise<void>;
-    createApiKey(description: string, allowed_ips?: string[]): Promise<void | import("./Objects/ApiKey.js").ApiKey | undefined>;
-    getServer(identifier: string): Promise<void | import("./Objects/Server.js").Server>;
+    createApiKey(description: string, allowed_ips?: string[]): Promise<void | ApiKey | undefined>;
+    getServer(identifier: string): Promise<void | Server>;
     signal(identifier: string, signal: string): Promise<string | void>;
     sendCommand(identifier: string, command: string): Promise<string | void>;
     usageInfo(identifier: string): Promise<any>;
-    getBackups(identifier: string): Promise<void | import("./Objects/Backup.js").Backup[]>;
-    getBackup(identifier: string, uuid: string): Promise<void | import("./Objects/Backup.js").Backup>;
-    createBackup(identifier: string): Promise<void | import("./Objects/Backup.js").Backup>;
+    getBackups(identifier: string): Promise<void | Backup[]>;
+    getBackup(identifier: string, uuid: string): Promise<void | Backup>;
+    createBackup(identifier: string): Promise<void | Backup>;
     downloadBackup(identifier: string, uuid: string): Promise<any>;
     deleteBackup(identifier: string, uuid: string): Promise<void>;
     getWebSocketCredentials(identifier: string): Promise<any>;
 }
-export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup, GetWebSocketCredentials };
+export { PQRY, GetServers, GetApiKeys, DeleteApiKey, CreateApiKey, GetServer, Signal, SendCommand, UsageInfo, CreateBackup, GetBackup, GetBackups, DownloadBackup, DeleteBackup, GetWebSocketCredentials, ServerWebSocket, Server, Backup, ApiKey };

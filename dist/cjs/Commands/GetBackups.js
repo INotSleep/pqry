@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetBackups = void 0;
+exports.GetBackups = GetBackups;
 const axios_1 = __importDefault(require("axios"));
 const Backup_js_1 = require("./../Objects/Backup.js");
 function GetBackups(host, apikey, identifier) {
@@ -46,6 +46,5 @@ function GetBackups(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.GetBackups = GetBackups;
 ;
 //# sourceMappingURL=GetBackups.js.map

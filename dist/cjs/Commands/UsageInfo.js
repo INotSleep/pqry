@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsageInfo = void 0;
+exports.UsageInfo = UsageInfo;
 const axios_1 = __importDefault(require("axios"));
 function UsageInfo(host, apikey, identifier) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -35,6 +35,5 @@ function UsageInfo(host, apikey, identifier) {
             .catch(e => console.log(e));
     });
 }
-exports.UsageInfo = UsageInfo;
 ;
 //# sourceMappingURL=UsageInfo.js.map

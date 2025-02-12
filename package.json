@@ -5,14 +5,12 @@
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/typings/index.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.cjs",
-      "import": "./dist/esm/index.js"
-    }
+  "exports": {  
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json"
   },
   "keywords": [
     "pterodactyl",
@@ -23,7 +21,6 @@
     "https",
     "api"
   ],
-  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
